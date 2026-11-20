@@ -11,7 +11,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
-    /* 1. CSS: Styling & Layout (Customize colors, spacing, and fonts here) */
     body {
       font-family: system-ui, -apple-system, sans-serif;
       margin: 0;
@@ -83,6 +82,9 @@
       padding: 16px;
       border-radius: 8px;
       border: 1px solid #ddd;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .tag {
@@ -91,22 +93,36 @@
       color: #01411C;
       padding: 3px 8px;
       border-radius: 4px;
+      width: fit-content;
+    }
+
+    .read-btn {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 8px 16px;
+      background: #01411C;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .read-btn:hover {
+      background: #025c27;
     }
   </style>
 </head>
 <body>
 
-  <!-- 2. HTML: Structure -->
   <header>
     <h1 class="urdu">قومی ڈیجیٹل کتب خانہ اور ثقافتی آرکائیو</h1>
     <p>National E-Library & Cultural Archive (Prototype)</p>
   </header>
 
   <main class="controls">
-    <!-- Search Input -->
-    <input type="text" id="searchInput" placeholder="Search in English or Roman Urdu (e.g., Iqbal, Dhoop Kinare)..." />
+    <input type="text" id="searchInput" placeholder="Search in English or Roman Urdu (e.g., Iqbal, Tain Tain Fish)..." />
 
-    <!-- Category Filter Buttons -->
     <div class="filters">
       <button class="active" onclick="filterCategory('all', this)">All</button>
       <button onclick="filterCategory('literature', this)">Literature</button>
@@ -115,46 +131,51 @@
     </div>
   </main>
 
-  <!-- Cards will be injected here by JavaScript -->
   <section class="grid" id="archiveGrid"></section>
 
   <script>
-    // 3. JAVASCRIPT: Logic (Very similar to C++ arrays, loops, and if-statements)
-
-    // Array of objects (like a C++ struct array) — add your own items here
     const archiveItems = [
+      {
+        titleEn: "Tain Tain Fish — Gul Nokhaiz Akhtar",
+        titleUr: "ٹیں ٹیں فش",
+        category: "literature",
+        year: "2010",
+        access: "Free",
+        link: "reader.html"
+      },
       {
         titleEn: "Kulliyat-e-Iqbal",
         titleUr: "کلیاتِ اقبال",
         category: "literature",
         year: "1924",
-        access: "Free"
+        access: "Free",
+        link: "#"
       },
       {
         titleEn: "NBF Physics Grade 10",
         titleUr: "طبیعیات جماعت دہم",
         category: "textbooks",
         year: "2024",
-        access: "Free"
+        access: "Free",
+        link: "#"
       },
       {
         titleEn: "Dhoop Kinare (PTV Classic)",
         titleUr: "دھوپ کنارے",
         category: "ptv",
         year: "1987",
-        access: "Diaspora Sub / Free Domestic"
+        access: "Diaspora Sub / Free Domestic",
+        link: "#"
       }
     ];
 
     let currentCategory = "all";
 
-    // Function to render cards onto the page
     function renderItems() {
       const grid = document.getElementById("archiveGrid");
       const searchText = document.getElementById("searchInput").value.toLowerCase();
       grid.innerHTML = "";
 
-      // Loop through items (just like a C++ for-loop)
       for (let i = 0; i < archiveItems.length; i++) {
         const item = archiveItems[i];
 
@@ -164,21 +185,24 @@
         if (matchesCategory && matchesSearch) {
           grid.innerHTML += `
             <div class="card">
-              <span class="tag">${item.category.toUpperCase()}</span>
-              <h2 class="urdu">${item.titleUr}</h2>
-              <h3>${item.titleEn}</h3>
-              <p>Year: ${item.year} • ${item.access}</p>
+              <div>
+                <span class="tag">${item.category.toUpperCase()}</span>
+                <h2 class="urdu">${item.titleUr}</h2>
+                <h3>${item.titleEn}</h3>
+                <p>Year: ${item.year} • ${item.access}</p>
+              </div>
+              <a href="${item.link}" class="read-btn">
+                ${item.link === "reader.html" ? "Read Book →" : "Coming Soon"}
+              </a>
             </div>
           `;
         }
       }
     }
 
-    // Update category when a button is clicked
     function filterCategory(category, clickedButton) {
       currentCategory = category;
 
-      // Update active button styling
       const buttons = document.querySelectorAll(".filters button");
       buttons.forEach(btn => btn.classList.remove("active"));
       clickedButton.classList.add("active");
@@ -186,10 +210,8 @@
       renderItems();
     }
 
-    // Listen for typing in the search bar
     document.getElementById("searchInput").addEventListener("input", renderItems);
 
-    // Initial render when page loads
     renderItems();
   </script>
 
