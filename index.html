@@ -51,6 +51,7 @@
     .filters {
       display: flex;
       gap: 8px;
+      flex-wrap: wrap;
     }
 
     button {
@@ -171,6 +172,16 @@
 
     let currentCategory = "all";
 
+    function getSafeHref(url) {
+      if (typeof url !== "string") return "#";
+      const trimmed = url.trim();
+      if (trimmed === "#") return "#";
+      if (/^[a-zA-Z0-9._/-]+\.html([?#].*)?$/.test(trimmed)) {
+        return trimmed;
+      }
+      return "#";
+    }
+
     function renderItems() {
       const grid = document.getElementById("archiveGrid");
       const searchText = document.getElementById("searchInput").value.toLowerCase();
@@ -183,6 +194,9 @@
         const matchesSearch = item.titleEn.toLowerCase().includes(searchText) || item.titleUr.includes(searchText);
 
         if (matchesCategory && matchesSearch) {
+          const safeLink = getSafeHref(item.link);
+          const isReadable = safeLink === "reader.html";
+
           grid.innerHTML += `
             <div class="card">
               <div>
@@ -191,8 +205,8 @@
                 <h3>${item.titleEn}</h3>
                 <p>Year: ${item.year} • ${item.access}</p>
               </div>
-              <a href="${item.link}" class="read-btn">
-                ${item.link === "reader.html" ? "Read Book →" : "Coming Soon"}
+              <a href="${safeLink}" class="read-btn">
+                ${isReadable ? "Read Book →" : "Coming Soon"}
               </a>
             </div>
           `;
