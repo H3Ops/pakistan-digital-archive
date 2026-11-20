@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+
+
+ 
+</body>
+</html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pakistan Digital Archive — Prototype</title>
+
+  <!-- Authentic Urdu Nastaliq Font from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* 1. CSS: Styling & Layout (Customize colors, spacing, and fonts here) */
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f6f4;
+      color: #1a1a1a;
+    }
+
+    header {
+      background-color: #01411C; /* Pakistan Green */
+      color: white;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .urdu {
+      font-family: 'Noto Nastaliq Urdu', serif;
+      direction: rtl;
+      line-height: 2;
+    }
+
+    .controls {
+      max-width: 800px;
+      margin: 24px auto;
+      padding: 0 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    input[type="text"] {
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .filters {
+      display: flex;
+      gap: 8px;
+    }
+
+    button {
+      padding: 8px 16px;
+      border: 1px solid #01411C;
+      background: white;
+      color: #01411C;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    button.active {
+      background: #01411C;
+      color: white;
+    }
+
+    .grid {
+      max-width: 800px;
+      margin: 0 auto 40px;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: white;
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+
+    .tag {
+      font-size: 12px;
+      background: #e6f0ea;
+      color: #01411C;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 2. HTML: Structure -->
+  <header>
+    <h1 class="urdu">گل نوخیز اختر کی ’ٹین ٹین فش‘</h1>
+    <p>Tain tain fish by Gul Akhtar Naiz (Prototype)</p>
+  </header>
+  <div style="
+  max-width: 760px;
+  margin: 30px auto;
+  padding: 24px;
+  direction: rtl;
+  text-align: right;
+  font-family: 'Noto Nastaliq Urdu', serif;
+  font-size: 20px;
+  line-height: 2.4;
+">
+  <p>جیسے ہی نائی نے میرے سر پر استرا پھیرنا شروع کیا۔۔۔۔۔ مجھے سکون سا آ گیا۔</p>
+  <p>ٹنڈ کروانا میرے لیے ہمیشہ باعث اطمینان رہا ہے۔۔۔۔۔ جیسے جیسے استرا میرے سر پر پھرتا جاتا ہے مجھے اپنا آپ ہلکا پھلکا لگنے لگتا ہے،</p>
+  <p>ٹنڈ کروانا میرے لیے ہمیشہ باعث اطمینان رہا ہے۔۔۔۔۔ جیسے جیسے استرا میرے سر پر پھرتا جاتا ہے مجھے اپنا آپ ہلکا پھلکا لگنے لگتا ہے،</p>
+  <p>میں ٹنڈ اس لیے نہیں کرواتا کہ اس سے سر کو ہوا لگتی ہے۔۔۔۔۔ بلکہ میں نے نوٹ کیا ہے کہ ٹنڈ کروانے سے میرا سر، منہ سے اچھا نکل آتا ہے۔</p>
+  <p>ابا کو میری ٹنڈ سے بہت چِڑ ہے، اُن کے بس میں ہو تو وہ دنیا بھر کے استروں پر زنگ لگوا دیں،</p>
+  <p>اگرچہ انہیں ٹنڈ کا کوئی شوق نہیں لیکن قدرت نے ان کے سارے بال اُڑا دیے ہیں۔۔۔۔۔ ابا کی اتنی ”گھنی“ ٹنڈ دیکھ کر میرے منہ سے رال ٹپکنے لگتی ہے</p>
+  <p>اور میں سوچتا ہوں کہ کاش میرا سر بھی ایسا Smooth ہو جائے۔</p>
+  <p>مجھے یاد ہے جب میں چھوٹا ہوتا تھا تو ابا کے سر پر چپت مارنے کا بڑا مزا آتا تھا، بالکل ایسی آواز آتی تھی جیسے طبلے کی ”تِر کِٹ“ سے آتی ہے،</p>
+  <p>لیکن جوں جوں میں بڑا ہوتا گیا، ابا کا سر مجھ سے دور ہوتا چلا گیا</p>
+  <p>اور پھر ایک وقت ایسا آیا کہ اخلاقی اعتبار سے ابا کے سر پر چپت مارنا میرے لیے جرم ضعیفی قرار پایا۔</p>
+  <p>انہی دنوں میں نے فیصلہ کیا کہ اب میں ابا کے سر پر انحصار کرنے کی بجائے اپنے ”سر“ پر خود کھڑا ہوں گا ۔۔۔۔۔</p>
+  <p>یوں میں نے خود انحصاری کی پالیسی پر عمل کرتے ہوئے پہلی دفعہ ٹنڈ کرائی۔</p>
+  <p>مجھے یاد ہے جب میں پہلی دفعہ ”ٹنڈ شدہ“ ہو کر گھر پہنچا تو ابا نے دروازے سے ہی مجھے چونی دے کر رخصت کرنے کی کوشش کی تھی۔</p>
+  <p>میں نے کچھ کہنے کے لیے منہ کھولا تو میری بات کاٹ کر بولے۔۔۔۔۔ ”دیکھو بھئی۔۔۔۔۔ نہ تو ہمارے گھر کوئی بچہ ہوا ہے اور نہ کوئی شادی ہے۔۔۔۔۔</p>
+  <p>پھر تمہیں ادھر کا پتا کس نے دیا، یہ لو چونی پکڑو اور معاف کرو!“ وہ دروازہ بند کرنے لگے۔۔۔۔۔!!!</p>
+    </article>
+</div>
+
+    <p>  <mark style="background-color: lightgreen;">صفحہ نمبر 3 • قومی ڈیجیٹل کتب خانہ</mark>.</p>
+
+  </main>
+
+  <script>
+    let currentSize = 20;
+
+    function changeFontSize(change) {
+      currentSize += change;
+      if (currentSize < 14) currentSize = 14;
+      if (currentSize > 32) currentSize = 32;
+      document.getElementById("storyContent").style.fontSize = currentSize + "px";
+    }
+  </script>
+
+</body>
+</html>
+  
+
+    
+
+  <!-- Cards will be injected here by JavaScript -->
+  <section class="grid" id="archiveGrid"></section>
+
+  <script>
+    // 3. JAVASCRIPT: Logic (Very similar to C++ arrays, loops, and if-statements)
+
+    // Array of objects (like a C++ struct array) — add your own items here
+    const archiveItems = [
+      {
+        titleEn: "Kulliyat-e-Iqbal",
+        titleUr: "کلیاتِ اقبال",
+        category: "literature",
+        year: "1924",
+        access: "Free"
+      },
+      {
+        titleEn: "NBF Physics Grade 10",
+        titleUr: "طبیعیات جماعت دہم",
+        category: "textbooks",
+        year: "2024",
+        access: "Free"
+      },
+      {
+        titleEn: "Dhoop Kinare (PTV Classic)",
+        titleUr: "دھوپ کنارے",
+        category: "ptv",
+        year: "1987",
+        access: "Diaspora Sub / Free Domestic"
+      }
+    ];
+
+    let currentCategory = "all";
+
+    // Function to render cards onto the page
+    function renderItems() {
+      const grid = document.getElementById("archiveGrid");
+      const searchText = document.getElementById("searchInput").value.toLowerCase();
+      grid.innerHTML = "";
+
+      // Loop through items (just like a C++ for-loop)
+      for (let i = 0; i < archiveItems.length; i++) {
+        const item = archiveItems[i];
+
+        const matchesCategory = (currentCategory === "all" || item.category === currentCategory);
+        const matchesSearch = item.titleEn.toLowerCase().includes(searchText) || item.titleUr.includes(searchText);
+
+        if (matchesCategory && matchesSearch) {
+          grid.innerHTML += `
+            <div class="card">
+              <span class="tag">${item.category.toUpperCase()}</span>
+              <h2 class="urdu">${item.titleUr}</h2>
+              <h3>${item.titleEn}</h3>
+              <p>Year: ${item.year} • ${item.access}</p>
+            </div>
+          `;
+        }
+      }
+    }
+
+    // Update category when a button is clicked
+    function filterCategory(category, clickedButton) {
+      currentCategory = category;
+
+      // Update active button styling
+      const buttons = document.querySelectorAll(".filters button");
+      buttons.forEach(btn => btn.classList.remove("active"));
+      clickedButton.classList.add("active");
+
+      renderItems();
+    }
+
+    // Listen for typing in the search bar
+    document.getElementById("searchInput").addEventListener("input", renderItems);
+
+    // Initial render when page loads
+    renderItems();
+  </script>
+
+</body>
+</html>
